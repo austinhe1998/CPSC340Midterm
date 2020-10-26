@@ -42,7 +42,7 @@ if __name__ == '__main__':
 
         X = dataset.values[:,:]
         D = X[X[:, 0] == 'CA', 3]
-        model = AutoRegressive(30)
+        model = AutoRegressive(7)
         model.fit(D)
         prediction = model.predict(D, 11)
         print(prediction)

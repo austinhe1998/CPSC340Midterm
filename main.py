@@ -41,11 +41,19 @@ if __name__ == '__main__':
             dataset = pd.read_csv(f)
 
         X = dataset.values[:,:]
-        model = AutoRegressive(10)
+        model = AutoRegressive(7)
 
         D = X[X[:, 0] == 'CA', 3]
         D2 = X[X[:, 0] == 'US', 3]
-        D = np.hstack((np.reshape(D2, (D.shape[0], 1)),np.reshape(D, (D.shape[0], 1))))
+        D3 = X[X[:, 0] == 'UK', 3]
+        D4 = X[X[:, 0] == 'FR', 3]
+        D5 = X[X[:, 0] == 'CA', 2]
+        D = np.hstack((
+            np.reshape(D, (D.shape[0], 1)),
+            np.reshape(D2, (D2.shape[0], 1)),
+            np.reshape(D3, (D3.shape[0], 1)),
+            np.reshape(D4, (D4.shape[0], 1))
+            ))
         model.fit(D)
         prediction = model.predict(D, 11)
         print(prediction)
